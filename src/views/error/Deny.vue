@@ -1,15 +1,31 @@
 <template>
   <div class="exception">
-    <v-container fluid fill-height>
-      <v-layout align-center justify-center>
+    <v-container
+      fluid
+      fill-height
+    >
+      <v-layout
+        align-center
+        justify-center
+      >
         <div class="mr-3 hidden-sm-and-down">
-          <img src="/static/error/403.svg" alt="" />
+          <img
+            src="/static/error/403.svg"
+            alt=""
+          >
         </div>
         <div class="text-md-center">
           <h1>403</h1>
-          <h2 class="my-3 headline ">Sorry, access denied.</h2>
+          <h2 class="my-3 headline ">
+            Sorry, access denied.
+          </h2>
           <div>
-            <v-btn color="primary" @click="goHome">Go Home</v-btn>
+            <v-btn
+              color="primary"
+              @click="goHome"
+            >
+              Go Home
+            </v-btn>
           </div>
         </div>
       </v-layout>
@@ -19,13 +35,13 @@
 
 <script>
 export default {
-  methods: {
-    goHome() {
-      this.$router.push({ path: "/" })
-    }
+  created () {
+    console.log('here')
   },
-  created() {
-    console.log("here")
+  methods: {
+    goHome () {
+      this.$router.push({ path: '/' })
+    }
   }
 }
 </script>

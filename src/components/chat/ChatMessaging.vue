@@ -1,43 +1,57 @@
 <template>
-  <v-container class="fill-height pa-0 ma-0 messaging fluid" id="messaging">
+  <v-container
+    id="messaging"
+    class="fill-height pa-0 ma-0 messaging fluid"
+  >
     <template v-if="!$vuetify.breakpoint.smAndDown">
       <v-layout row>
-        <v-flex lg3 class="white">
-          <chat-history> </chat-history>
+        <v-flex
+          lg3
+          class="white"
+        >
+          <chat-history />
         </v-flex>
         <v-flex lg9>
-          <chat-window></chat-window>
+          <chat-window />
         </v-flex>
       </v-layout>
     </template>
     <template v-else>
       <v-layout column>
-        <v-flex sm12 class="white" v-if="showSidebar">
-          <chat-history> </chat-history>
+        <v-flex
+          v-if="showSidebar"
+          sm12
+          class="white"
+        >
+          <chat-history />
         </v-flex>
-        <v-flex sm12 v-if="showWindow">
-          <chat-window></chat-window>
+        <v-flex
+          v-if="showWindow"
+          sm12
+        >
+          <chat-window />
         </v-flex>
       </v-layout>
     </template>
   </v-container>
 </template>
 <script>
-import ChatHistory from "./ChatHistory"
-import ChatWindow from "./ChatWindow"
+import ChatHistory from './ChatHistory'
+import ChatWindow from './ChatWindow'
+
 export default {
   components: {
     ChatHistory,
     ChatWindow
   },
-  data() {
+  data () {
     return {}
   },
   computed: {
-    showSidebar() {
+    showSidebar () {
       return this.$route.params.uuid === undefined
     },
-    showWindow() {
+    showWindow () {
       return this.$route.params.uuid !== undefined
     }
   }

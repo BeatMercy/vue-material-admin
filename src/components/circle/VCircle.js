@@ -1,5 +1,6 @@
-import "./VCircle.styl"
-import Colorable from "vuetify/es5/mixins/colorable"
+import './VCircle.styl'
+import Colorable from 'vuetify/es5/mixins/colorable'
+
 export default {
   mixins: [Colorable],
 
@@ -13,28 +14,28 @@ export default {
     ring: Boolean
   },
   computed: {
-    classes() {
+    classes () {
       const classes = {
-        "circle-sm": this.small,
-        "circle-lg": this.medium,
-        "circle-xl": this.large,
-        "circle-ring": this.ring,
-        "circle-dot": this.dot,
-        "circle-pill": this.pill,
-        "theme--light": this.light,
-        "theme--dark": this.dark
+        'circle-sm': this.small,
+        'circle-lg': this.medium,
+        'circle-xl': this.large,
+        'circle-ring': this.ring,
+        'circle-dot': this.dot,
+        'circle-pill': this.pill,
+        'theme--light': this.light,
+        'theme--dark': this.dark
       }
       return classes
     }
   },
-  render(h) {
+  render (h) {
     const data = {
-      staticClass: "circle",
+      staticClass: 'circle',
       class: this.classes,
       attrs: { tabindex: this.disabled ? -1 : 0 },
       on: this.$listeners
     }
 
-    return h("span", data, [this.$slots.default])
+    return h('span', data, [this.$slots.default])
   }
 }

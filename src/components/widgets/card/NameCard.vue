@@ -1,39 +1,88 @@
 <template>
   <div class="name-card">
-    <v-card :color="color" ref="card" :dark="dark" :img="cardBgImage">
+    <v-card
+      ref="card"
+      :color="color"
+      :dark="dark"
+      :img="cardBgImage"
+    >
       <v-responsive v-if="showTopNav">
-        <v-layout row justify-space-between class="ma-0">
+        <v-layout
+          row
+          justify-space-between
+          class="ma-0"
+        >
           <v-flex xs2>
-            <v-icon color="pink">favorite</v-icon>
+            <v-icon color="pink">
+              favorite
+            </v-icon>
           </v-flex>
-          <v-flex xs2 class="text-sm-right">
+          <v-flex
+            xs2
+            class="text-sm-right"
+          >
             <v-icon>more_vert</v-icon>
           </v-flex>
         </v-layout>
       </v-responsive>
       <v-card-text>
-        <div class="layout ma-0 align-center" :class="computeCardLayout">
-          <v-avatar :size="computeAvatarSize" color="primary">
-            <img :src="avatar.src" :alt="name" v-if="showAvatar" />
-            <span v-else class="white--text headline">{{ name.charAt(0) }}</span>
+        <div
+          class="layout ma-0 align-center"
+          :class="computeCardLayout"
+        >
+          <v-avatar
+            :size="computeAvatarSize"
+            color="primary"
+          >
+            <img
+              v-if="showAvatar"
+              :src="avatar.src"
+              :alt="name"
+            >
+            <span
+              v-else
+              class="white--text headline"
+            >{{ name.charAt(0) }}</span>
           </v-avatar>
-          <div class="flex" :class="computeTextAlgin">
-            <div class="subheading">{{ name }}</div>
+          <div
+            class="flex"
+            :class="computeTextAlgin"
+          >
+            <div class="subheading">
+              {{ name }}
+            </div>
             <span class="caption">{{ jobTitle }}</span>
           </div>
         </div>
       </v-card-text>
     </v-card>
-    <v-bottom-nav :value="true" color="transparent" :height="64" v-if="showBottomNav">
-      <v-btn flat color="teal" value="recent">
+    <v-bottom-nav
+      v-if="showBottomNav"
+      :value="true"
+      color="transparent"
+      :height="64"
+    >
+      <v-btn
+        flat
+        color="teal"
+        value="recent"
+      >
         <span>Recent</span>
         <v-icon>history</v-icon>
       </v-btn>
-      <v-btn flat color="teal" value="favorites">
+      <v-btn
+        flat
+        color="teal"
+        value="favorites"
+      >
         <span>Favorites</span>
         <v-icon>favorite</v-icon>
       </v-btn>
-      <v-btn flat color="teal" value="nearby">
+      <v-btn
+        flat
+        color="teal"
+        value="nearby"
+      >
         <span>Nearby</span>
         <v-icon>place</v-icon>
       </v-btn>
@@ -46,7 +95,7 @@ export default {
   props: {
     name: {
       type: String,
-      default: ""
+      default: ''
     },
     avatar: {
       type: Object,
@@ -54,14 +103,15 @@ export default {
     },
     jobTitle: {
       type: String,
-      default: ""
+      default: ''
     },
     cardBgImage: {
-      type: String
+      type: String,
+      default: ''
     },
     color: {
       type: String,
-      default: ""
+      default: ''
     },
     dark: {
       type: Boolean,
@@ -83,24 +133,24 @@ export default {
   data: () => ({}),
 
   computed: {
-    computeCardLayout() {
-      return this.mini ? "row" : "column"
+    computeCardLayout () {
+      return this.mini ? 'row' : 'column'
     },
-    computeTextAlgin() {
-      return this.mini ? "text-sm-right" : "text-sm-center"
+    computeTextAlgin () {
+      return this.mini ? 'text-sm-right' : 'text-sm-center'
     },
-    computeAvatarSize() {
-      return this.mini ? "48" : "96"
+    computeAvatarSize () {
+      return this.mini ? '48' : '96'
     },
-    showAvatar() {
+    showAvatar () {
       return this.avatar !== null && this.avatar.src
     },
 
-    showBottomNav() {
+    showBottomNav () {
       return this.mini === false && this.bottomNav
     },
 
-    showTopNav() {
+    showTopNav () {
       return this.mini === false && this.topNav
     }
   },

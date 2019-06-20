@@ -1,6 +1,7 @@
 <template>
   <v-fab-transition>
     <v-btn
+      v-show="fab"
       fab="fab"
       small
       dark="dark"
@@ -8,7 +9,6 @@
       bottom="bottom"
       right="right"
       color="red"
-      v-show="fab"
       @click="toTop"
     >
       <v-icon>keyboard_arrow_up</v-icon>
@@ -18,21 +18,21 @@
 
 <script>
 export default {
-  name: "AppFab",
+  name: 'AppFab',
 
   data: () => ({
     fab: false
   }),
 
   methods: {
-    onScroll() {
-      if (typeof window === "undefined") return
+    onScroll () {
+      if (typeof window === 'undefined') return
 
       const top = window.pageYOffset || document.documentElement.offsetTop || 0
       this.fab = top > 300
     },
-    toTop() {
-      this.$router.push({ hash: "" })
+    toTop () {
+      this.$router.push({ hash: '' })
       this.$vuetify.goTo(0)
     }
   }

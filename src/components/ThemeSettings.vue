@@ -1,9 +1,7 @@
 <template>
   <div class="themeSetting">
     <v-toolbar color="blue">
-      <v-toolbar-title>
-        Theme Settings
-      </v-toolbar-title>
+      <v-toolbar-title>主题色选择</v-toolbar-title>
     </v-toolbar>
     <v-container>
       <v-layout column>
@@ -14,18 +12,32 @@
           <div class="color-option">
             <v-layout wrap>
               <label
-                class="color-option--label flex xs6 pa-1"
                 v-for="(option, index) in themeColorOptions"
                 :key="index"
+                class="color-option--label flex xs6 pa-1"
               >
-                <input type="radio" name="color" :value="option.key" v-model="themeColor" />
+                <input
+                  v-model="themeColor"
+                  type="radio"
+                  name="color"
+                  :value="option.key"
+                >
                 <span class="color-option--item bg">
                   <span class="overlay">
                     <span class="material-icons">check</span>
                   </span>
-                  <span class="color-option--item--header sideNav" :class="option.value.sideNav"></span>
-                  <span class="color-option--item--header mainNav" :class="option.value.mainNav"></span>
-                  <span class="sideMenu" :class="option.value.sideMenu"></span>
+                  <span
+                    class="color-option--item--header sideNav"
+                    :class="option.value.sideNav"
+                  />
+                  <span
+                    class="color-option--item--header mainNav"
+                    :class="option.value.mainNav"
+                  />
+                  <span
+                    class="sideMenu"
+                    :class="option.value.sideMenu"
+                  />
                 </span>
               </label>
             </v-layout>
@@ -34,13 +46,19 @@
             <v-subheader class="px-1 my-2">
               Sidebar Option
             </v-subheader>
-            <v-divider></v-divider>
+            <v-divider />
             <div class="my-3">
               <v-btn-toggle v-model="sideBarOption">
-                <v-btn flat value="dark">
+                <v-btn
+                  flat
+                  value="dark"
+                >
                   Dark
                 </v-btn>
-                <v-btn flat value="light">
+                <v-btn
+                  flat
+                  value="light"
+                >
                   Light
                 </v-btn>
               </v-btn-toggle>
@@ -52,88 +70,89 @@
   </div>
 </template>
 <script>
-import colors from "vuetify/es5/util/colors"
+import colors from 'vuetify/es5/util/colors'
+
 export default {
-  data() {
+  data () {
     return {
-      themeColor: "indigo",
-      sideBarOption: "light",
-      colors: colors
+      themeColor: 'indigo',
+      sideBarOption: 'light',
+      colors
     }
   },
   computed: {
-    themeColorOptions() {
+    themeColorOptions () {
       return [
         {
-          key: "blue",
+          key: 'blue',
           value: {
-            sideNav: "blue",
-            mainNav: "blue",
-            sideMenu: "white"
+            sideNav: 'blue',
+            mainNav: 'blue',
+            sideMenu: 'white'
           }
         },
         {
-          key: "teal",
+          key: 'teal',
           value: {
-            sideNav: "teal",
-            mainNav: "teal",
-            sideMenu: "white"
+            sideNav: 'teal',
+            mainNav: 'teal',
+            sideMenu: 'white'
           }
         },
         {
-          key: "red",
+          key: 'red',
           value: {
-            sideNav: "red",
-            mainNav: "red",
-            sideMenu: "white"
+            sideNav: 'red',
+            mainNav: 'red',
+            sideMenu: 'white'
           }
         },
         {
-          key: "orange",
+          key: 'orange',
           value: {
-            sideNav: "orange",
-            mainNav: "orange",
-            sideMenu: "white"
+            sideNav: 'orange',
+            mainNav: 'orange',
+            sideMenu: 'white'
           }
         },
         {
-          key: "purple",
+          key: 'purple',
           value: {
-            sideNav: "purple",
-            mainNav: "purple",
-            sideMenu: "white"
+            sideNav: 'purple',
+            mainNav: 'purple',
+            sideMenu: 'white'
           }
         },
         {
-          key: "indigo",
+          key: 'indigo',
           value: {
-            sideNav: "indigo",
-            mainNav: "indigo",
-            sideMenu: "white"
+            sideNav: 'indigo',
+            mainNav: 'indigo',
+            sideMenu: 'white'
           }
         },
         {
-          key: "cyan",
+          key: 'cyan',
           value: {
-            sideNav: "cyan",
-            mainNav: "cyan",
-            sideMenu: "white"
+            sideNav: 'cyan',
+            mainNav: 'cyan',
+            sideMenu: 'white'
           }
         },
         {
-          key: "pink",
+          key: 'pink',
           value: {
-            sideNav: "pink",
-            mainNav: "pink",
-            sideMenu: "white"
+            sideNav: 'pink',
+            mainNav: 'pink',
+            sideMenu: 'white'
           }
         },
         {
-          key: "green",
+          key: 'green',
           value: {
-            sideNav: "green",
-            mainNav: "green",
-            sideMenu: "white"
+            sideNav: 'green',
+            mainNav: 'green',
+            sideMenu: 'white'
           }
         }
       ]
@@ -141,14 +160,14 @@ export default {
   },
   watch: {
     themeColor: {
-      handler(val) {
+      handler (val) {
         this.$vuetify.theme.primary = this.colors[val].base
       },
       immediate: true
     },
     sideBarOption: {
-      handler(val) {
-        this.$vuetify.dark = val === "dark"
+      handler (val) {
+        this.$vuetify.dark = val === 'dark'
       },
       immediate: true
     }
@@ -156,42 +175,60 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-.color-option
-  &--label
-    position: relative
-    display: block
-    cursor: pointer
-    & input[type="radio"]
-      display:none
-      &+span
-        position: relative
-        &>.overlay
+.color-option {
+  &--label {
+    position: relative;
+    display: block;
+    cursor: pointer;
+
+    & input[type='radio'] {
+      display: none;
+
+      &+span {
+        position: relative;
+
+        &>.overlay {
           display: none;
-          position: absolute
+          position: absolute;
           top: 0;
           bottom: 0;
           right: 0;
           left: 0;
           width: 100%;
           height: 100%;
-          background-color: rgba(0,0,0,.3);
+          background-color: rgba(0, 0, 0, 0.3);
           text-align: center;
           line-height: 30px;
           color: #fff;
-      &:checked+span>.overlay
-        display:block
-    & .bg
-      background-color: #f1f1f1
-  &--item
+        }
+      }
+
+      &:checked+span>.overlay {
+        display: block;
+      }
+    }
+
+    & .bg {
+      background-color: #f1f1f1;
+    }
+  }
+
+  &--item {
     overflow: hidden;
     display: block;
-    box-shadow: 0 0 2px rgba(0,0,0,.1);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
-    &--header
-      height: 10px
-    &>span
+
+    &--header {
+      height: 10px;
+    }
+
+    &>span {
       display: block;
       float: left;
       width: 50%;
       height: 20px;
+    }
+  }
+}
 </style>

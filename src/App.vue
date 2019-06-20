@@ -1,47 +1,55 @@
 <template>
   <div class="app-root">
-    <router-view></router-view>
-    <!-- theme setting -->
-    <v-btn small fab dark falt fixed top="top" right="right" class="setting-fab" color="red" @click="openThemeSettings">
+    <router-view />
+
+    <!-- 禁用全局配色
+    <VBtn small fab dark falt fixed top="top" right="right" class="setting-fab" color="red" @click="openThemeSettings">
       <v-icon>settings</v-icon>
-    </v-btn>
-    <!-- setting drawer -->
+    </VBtn>
+    < setting drawer
     <v-navigation-drawer class="setting-drawer" temporary right v-model="rightDrawer" hide-overlay fixed>
       <theme-settings></theme-settings>
     </v-navigation-drawer>
+    -->
     <!-- global snackbar -->
-    <v-snackbar :timeout="3000" bottom right :color="snackbar.color" v-model="snackbar.show">
+    <v-snackbar
+      v-model="snackbar.show"
+      :timeout="3000"
+      bottom
+      right
+      :color="snackbar.color"
+    >
       {{ snackbar.text }}
-      <v-btn dark flat @click.native="snackbar.show = false" icon>
+      <VBtn
+        dark
+        flat
+        icon
+        @click.native="snackbar.show = false"
+      >
         <v-icon>close</v-icon>
-      </v-btn>
+      </VBtn>
     </v-snackbar>
   </div>
 </template>
 
 <script>
-import ThemeSettings from "@/components/ThemeSettings"
-import AppEvents from "./event"
-
 export default {
-  components: {
-    ThemeSettings
-  },
-  data() {
+  components: {},
+  data () {
     return {
       rightDrawer: false,
       snackbar: {
         show: false,
-        text: "",
-        color: ""
+        text: '',
+        color: ''
       }
     }
   },
-  created() {
+  created () {
     // add app events
   },
   methods: {
-    openThemeSettings() {
+    openThemeSettings () {
       this.$vuetify.goTo(0)
       this.rightDrawer = !this.rightDrawer
     }

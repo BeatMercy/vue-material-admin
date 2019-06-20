@@ -1,18 +1,41 @@
 <template>
   <div class="chat-contact">
-    <v-toolbar flat dense class="chat-contact--toolbar">
-      <v-text-field flat solo full-width prepend-icon="search" label="Search"></v-text-field>
+    <v-toolbar
+      flat
+      dense
+      class="chat-contact--toolbar"
+    >
+      <v-text-field
+        flat
+        solo
+        full-width
+        prepend-icon="search"
+        label="Search"
+      />
     </v-toolbar>
     <vue-perfect-scrollbar class="chat-history--scrollbar">
-      <v-divider></v-divider>
-      <v-list two-line class="chat-contact--list">
+      <v-divider />
+      <v-list
+        two-line
+        class="chat-contact--list"
+      >
         <v-subheader>Contacts</v-subheader>
         <template v-for="(item, index) in users">
-          <v-divider :key="index"></v-divider>
-          <v-list-tile avatar :key="item.name + index" :to="contactRoute(item.uuid)">
+          <v-divider :key="index" />
+          <v-list-tile
+            :key="item.name + index"
+            avatar
+            :to="contactRoute(item.uuid)"
+          >
             <v-list-tile-avatar color="primary">
-              <img :src="item.avatar" v-if="item.avatar" />
-              <span v-else class="white--text headline">{{ firstLetter(item.name) }}</span>
+              <img
+                v-if="item.avatar"
+                :src="item.avatar"
+              >
+              <span
+                v-else
+                class="white--text headline"
+              >{{ firstLetter(item.name) }}</span>
             </v-list-tile-avatar>
             <v-list-tile-content>
               <v-list-tile-title>
@@ -21,7 +44,11 @@
               <v-list-tile-sub-title>{{ item.jobTitle }}</v-list-tile-sub-title>
             </v-list-tile-content>
             <v-list-tile-action>
-              <v-circle dot small :color="userStatusColor(item)"></v-circle>
+              <v-circle
+                dot
+                small
+                :color="userStatusColor(item)"
+              />
             </v-list-tile-action>
           </v-list-tile>
         </template>
@@ -31,9 +58,10 @@
 </template>
 
 <script>
-import { getUser } from "@/api/user"
-import VCircle from "@/components/circle/VCircle"
-import VuePerfectScrollbar from "vue-perfect-scrollbar"
+import { getUser } from '@/api/user'
+import VCircle from '@/components/circle/VCircle'
+import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+
 export default {
   components: {
     VuePerfectScrollbar,
@@ -41,19 +69,19 @@ export default {
   },
   data: () => ({}),
   computed: {
-    users() {
+    users () {
       return getUser()
     }
   },
   methods: {
-    contactRoute(id) {
-      return "/chat/contact/" + id
+    contactRoute (id) {
+      return '/chat/contact/' + id
     },
-    firstLetter(name) {
+    firstLetter (name) {
       return name.charAt(0)
     },
-    userStatusColor(item) {
-      return item.active ? "green" : "grey"
+    userStatusColor (item) {
+      return item.active ? 'green' : 'grey'
     }
   }
 }

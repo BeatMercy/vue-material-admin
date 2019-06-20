@@ -1,31 +1,48 @@
 <template>
-  <v-app id="inspire" class="app dashboard">
-    <app-drawer class="app--drawer" :show-drawer="showDrawer"></app-drawer>
-    <app-toolbar class="app--toolbar" @side-icon-click="handleDrawerVisiable"></app-toolbar>
+  <v-app
+    id="inspire"
+    class="app dashboard"
+  >
+    <app-drawer
+      class="app--drawer"
+      :show-drawer="showDrawer"
+    />
+    <app-toolbar
+      class="app--toolbar"
+      @side-icon-click="handleDrawerVisiable"
+    />
     <v-content>
       <!-- Page Header -->
-      <page-header></page-header>
+      <page-header />
       <div class="page-wrapper">
-        <router-view></router-view>
+        <router-view />
       </div>
       <!-- App Footer -->
-      <v-footer height="auto" class="white pa-3 app--footer">
+      <v-footer
+        height="auto"
+        class="white pa-3 app--footer"
+      >
         <span class="caption">isocked.com Design &copy; {{ new Date().getFullYear() }}</span>
-        <v-spacer></v-spacer>
+        <v-spacer />
         <span class="caption mr-1"> Make With Love </span>
-        <v-icon color="pink" small>favorite</v-icon>
+        <v-icon
+          color="pink"
+          small
+        >
+          favorite
+        </v-icon>
       </v-footer>
     </v-content>
     <!-- Go to top -->
-    <app-fab></app-fab>
+    <app-fab />
   </v-app>
 </template>
 
 <script>
-import AppDrawer from "@/components/AppDrawer"
-import AppToolbar from "@/components/AppToolbar"
-import AppFab from "@/components/AppFab"
-import PageHeader from "@/components/PageHeader"
+import AppDrawer from '@/components/AppDrawer'
+import AppToolbar from '@/components/AppToolbar'
+import AppFab from '@/components/AppFab'
+import PageHeader from '@/components/PageHeader'
 
 export default {
   components: {
@@ -35,17 +52,17 @@ export default {
     PageHeader
   },
 
-  data() {
+  data () {
     return {
       showDrawer: true
     }
   },
+  created () {},
   methods: {
-    handleDrawerVisiable() {
+    handleDrawerVisiable () {
       this.showDrawer = !this.showDrawer
     }
-  },
-  created() {}
+  }
 }
 </script>
 

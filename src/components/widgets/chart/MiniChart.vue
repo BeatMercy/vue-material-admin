@@ -3,13 +3,22 @@
     <v-card-text>
       <div class="layout row ma-0 align-center justify-space-between">
         <div class="text-box">
-          <div class="subheading pb-2">{{ title }}</div>
-          <span class="grey--text"
-            >{{ subTitle }} <v-icon small :color="iconColor">{{ icon }}</v-icon></span
-          >
+          <div class="subheading pb-2">
+            {{ title }}
+          </div>
+          <span
+            class="grey--text"
+          >{{ subTitle }} <v-icon
+            small
+            :color="iconColor"
+          >{{ icon }}</v-icon></span>
         </div>
         <div class="chart">
-          <e-chart :path-option="computeChartOption" height="68px" width="100%"> </e-chart>
+          <e-chart
+            :path-option="computeChartOption"
+            height="68px"
+            width="100%"
+          />
         </div>
       </div>
     </v-card-text>
@@ -17,7 +26,8 @@
 </template>
 
 <script>
-import EChart from "@/components/chart/echart"
+import EChart from '@/components/chart/echart'
+
 export default {
   components: {
     EChart
@@ -25,66 +35,66 @@ export default {
   props: {
     title: {
       type: String,
-      default: ""
+      default: ''
     },
     subTitle: {
       type: String,
-      default: ""
+      default: ''
     },
     icon: {
       type: String,
-      default: ""
+      default: ''
     },
     iconColor: {
       type: String,
-      default: "success"
+      default: 'success'
     },
     type: {
       type: String,
-      default: "line"
+      default: 'line'
     },
     chartColor: {
       type: String,
-      default: ""
+      default: ''
     },
     data: {
       type: Array,
       default: () => []
     }
   },
-  data() {
+  data () {
     return {
       defaultOption: [
-        ["dataset.source", this.data],
-        ["xAxis.show", false],
-        ["yAxis.show", false],
-        ["color", [this.chartColor]]
+        ['dataset.source', this.data],
+        ['xAxis.show', false],
+        ['yAxis.show', false],
+        ['color', [this.chartColor]]
       ]
+    }
+  },
+  computed: {
+    computeChartOption () {
+      return this.defaultOption
     }
   },
 
   watch: {
     type: {
       deep: true,
-      handler: function (newVal) {
+      handler (newVal) {
         switch (newVal) {
-          case "bar":
-            this.defaultOption.push(["series[0].type", "bar"])
+          case 'bar':
+            this.defaultOption.push(['series[0].type', 'bar'])
             break
-          case "area":
-            this.defaultOption.push(["series[0].type", "line"])
-            this.defaultOption.push(["series[0].areaStyle", {}])
+          case 'area':
+            this.defaultOption.push(['series[0].type', 'line'])
+            this.defaultOption.push(['series[0].areaStyle', {}])
             break
           default:
             break
         }
-        return this.defaultOption        
+        return this.defaultOption
       }
-    }
-  },
-  computed: {
-    computeChartOption() {
-      return this.defaultOption
     }
   }
 }

@@ -12,22 +12,35 @@
             &nbsp; Add Folder
           </v-btn>
         </v-btn-toggle>
-        <v-spacer></v-spacer>
+        <v-spacer />
         <v-btn-toggle v-model="view">
-          <v-btn flat value="list">
+          <v-btn
+            flat
+            value="list"
+          >
             <v-icon>view_headline</v-icon>
           </v-btn>
-          <v-btn flat value="grid">
+          <v-btn
+            flat
+            value="grid"
+          >
             <v-icon>view_list</v-icon>
           </v-btn>
         </v-btn-toggle>
       </v-toolbar>
-      <v-divider></v-divider>
+      <v-divider />
     </div>
     <div class="layout row">
       <div class="media-aside media-menu">
-        <v-list dense class="transparent">
-          <v-list-tile v-for="(item, index) in mediaMenu" :key="index" :to="item.to">
+        <v-list
+          dense
+          class="transparent"
+        >
+          <v-list-tile
+            v-for="(item, index) in mediaMenu"
+            :key="index"
+            :to="item.to"
+          >
             <v-list-tile-action v-if="item.icon">
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -38,10 +51,10 @@
         </v-list>
       </div>
       <div class="media-content flex transparent">
-        <router-view name="MediaList"></router-view>
+        <router-view name="MediaList" />
       </div>
       <div class="media-aside media-detail">
-        <router-view name="MediaDetail"></router-view>
+        <router-view name="MediaDetail" />
       </div>
     </div>
   </div>
@@ -50,48 +63,48 @@
 <script>
 export default {
   data: () => ({
-    size: "lg",
-    view: "grid",
-    imageMime: ["image/jpeg", "image/png", "image/svg+xml"],
+    size: 'lg',
+    view: 'grid',
+    imageMime: ['image/jpeg', 'image/png', 'image/svg+xml'],
     mediaMenu: [
       {
-        icon: "photo",
-        title: "Images",
-        to: { path: "/media/image" }
+        icon: 'photo',
+        title: 'Images',
+        to: { path: '/media/image' }
       },
       {
-        icon: "videocam",
-        title: "Video",
-        to: { path: "/media/video" }
+        icon: 'videocam',
+        title: 'Video',
+        to: { path: '/media/video' }
       },
       {
-        icon: "volume_down",
-        title: "Audio",
-        to: { path: "/media/audio" }
+        icon: 'volume_down',
+        title: 'Audio',
+        to: { path: '/media/audio' }
       },
       {
-        icon: "insert_drive_file",
-        title: "Document",
-        to: { path: "/media/doc" }
+        icon: 'insert_drive_file',
+        title: 'Document',
+        to: { path: '/media/doc' }
       }
     ]
   }),
   computed: {
-    files() {
+    files () {
       return this.$store.state.file.items
     }
   },
 
-  created() {
-    this.$store.dispatch("listFiles")
+  created () {
+    this.$store.dispatch('listFiles')
   },
 
   methods: {
-    isImage(file) {
+    isImage (file) {
       return this.imageMime.includes(file.fileType)
     },
-    mimeIcons(file) {
-      return this.imageMime.includes(file.fileType) ? "image" : "insert_drive_file"
+    mimeIcons (file) {
+      return this.imageMime.includes(file.fileType) ? 'image' : 'insert_drive_file'
     }
   }
 }
