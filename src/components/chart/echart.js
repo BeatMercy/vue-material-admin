@@ -15,7 +15,8 @@ Object.entries(colors).forEach((item) => {
   if (item[1].base) {
     colorPalette.push(item[1].base)
   }
-})(function () {
+});
+(function () {
   const throttle = function (type, name, obj) {
     obj = obj || window
     let running = false
